@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Overlay: Overlay Plugin</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+        }
+        button {
+            width: 80%;
+        }
+    </style>
+</head>
+<body>
+    <button id="close">Close the Overlay</button>
+    <script>
+        var closeButton = document.getElementById('close');
+
+        closeButton.addEventListener('click', function() {
+            new DroneDeploy({ version: 1 })
+                .then(function(dronedeployApi) {
+                    dronedeployApi.Overlay.close();
+                });
+        });
+    </script>
+</body>
+</html>
