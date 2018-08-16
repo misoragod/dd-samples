@@ -1,5 +1,19 @@
 #DroneDeployのApp Market用のサンプルアプリケーションです。
 
+
+###Hello
+**ダッシュボードにHello Worldを表示する**
+
+###Login
+**ダッシュボードにLogin画面を表示する**
+
+###GetFlightLog
+
+###MapAPI
+
+###GetImaes
+
+
 ####Plans/GetAll
 **全プランの詳細を取得する。** 
 
