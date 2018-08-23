@@ -1,30 +1,17 @@
 **DroneDeployのApp Market用のサンプルアプリケーション** 
   
-
-**Hello**   
-
-ダッシュボードにHello Worldを表示する
-
-**Login**    
+| Sample        | 概要           |
+| :------------- |:-------------|
+|Hello      |ダッシュボードにHello Worldを表示する。 |
+|Login      |ダッシュボードにLogin画面を表示する。      |
+|GetFlightLog |フライトログを取得する。      |
+|MapAPI||
+|GetImages||    
+|Plans/GetAll|全プランの詳細を取得する。| 
+|Plans/GetCurrentlyView|現在のプランの詳細を取得する。
+|Plans/GetCurrentlyJson|現在のプランの詳細をjson形式でダウンロードする。|   
   
-ダッシュボードにLogin画面を表示する
-
-**GetFlightLog**    
-
-
-**MapAPI**  
-    
-
-**GetImaes**  
-  
-
-
-**Plans/GetAll**   
-
-全プランの詳細を取得する。 
-
-プランの詳細を取得する部分でAPIからの戻り値に不正な値が入っているためエラーになるので、
-詳細取得部分はコメントアウトしプラン名の一覧のみ表示させている。  
-  
-APIの戻り値がnullのケースを考慮し、詳細も表示できるように修正。
+   
+**Plan/GetALL, GetCurrentlyView,GetCurrentlyJson**
+  APIの戻り値がnullのケースを考慮し、正常に動作するように修正。
 
