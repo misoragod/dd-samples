@@ -41,6 +41,10 @@
         var planOutput = document.getElementById('plan')
 
         function formatObject(obj) {
+            if (obj == null) {
+                console.log("obj = null");
+                return null
+            } 
             var keys = Object.keys(obj);
             var result = keys.map(function(key) {
                 return typeof obj[key] === 'object' ? `<li><span class="key sans">${key}</span>: </li><ul>${formatObject(obj[key])}</ul></li>` : `<li><span class="key sans">${key}</span>: ${obj[key]}</li>`
