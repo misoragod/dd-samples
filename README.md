@@ -12,6 +12,7 @@
 |Plans/GetCurrentlyJson|現在のプランの詳細をjson形式でダウンロードする。|   
   
    
-**Plan/GetALL, GetCurrentlyView,GetCurrentlyJson**
+**Plan/GetALL, GetCurrentlyView,GetCurrentlyJson**  
+
   APIの戻り値がnullのケースを考慮し、正常に動作するように修正。
 
