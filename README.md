@@ -10,7 +10,7 @@
 |Plans/GetAll|全プランの詳細を取得する。| 
 |Plans/GetCurrentlyView|現在のプランの詳細を取得する。
 |Plans/GetCurrentlyJson|現在のプランの詳細をjson形式でダウンロードする。|   
-  
+|Azure/ConnectAzure|DDからAzureのStorage Queueへメセージを送信する。|  
    
 **Plan/GetALL, GetCurrentlyView,GetCurrentlyJson**  
 
