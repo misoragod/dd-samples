@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Connect to Azure</title>
+    <script src="https://code.jquery.com/jquery-3.0.0.js"></script> 
+    <script src="js/azure-storage.queue.js"></script>
+</head>
+
+<body>
+    <h1></h1>DD connects to Azure Storage</h1>
+    <input type="button" value="Send" id="send" />
+    <ul id="msg"></ul>
+    <script>
+        $(function () {
+            var STORAGE_ACCOUNT = 'ddsample1';
+            var QUEUE_NAME = 'js-queue-items';
+            var SAS_TOKEN = '?sv=2017-11-09&ss=bfqt&srt=sco&sp=rwdlacup&se=2018-08-24T10:38:05Z&st=2018-08-24T02:38:05Z&sip=219.117.218.13&spr=https,http&sig=woE1fssdJO6Kk2ndK2If%2F2okZD0LgONHIuYc%2BceuTuM%3D';
+            var MESSAGE =  'Hello Azure!!'; 
+            var queueUri = 'https://' + STORAGE_ACCOUNT + '.queue.core.windows.net';
+            var queueService = AzureStorage.Queue.createQueueServiceWithSas(queueUri, SAS_TOKEN);
+            $("#send").click(function(){
+                queueService.listQueuesSegmented(null, function (error, results) {
+    　　　　　      if (error) {
+        　　　  　// List queue error
+    　　　　　      } else {
+        　　        for (var i = 0, queue; queue = results.entries[i]; i++) {
+                        console.log(queue.name);
+                    }
+            　    }
+                });
+                var encoder = new AzureStorage.Queue.QueueMessageEncoder.TextBase64QueueMessageEncoder();
+                queueService.createMessage(QUEUE_NAME, encoder.encode(MESSAGE), function (error, results, response) {
+                  if (error) {
+                    // Create message error
+                  } else {
+                    // Create message successfully
+                    $("#msg").text("Sent message");
+                    console.log("Sent message")
+                  }
+                });
+          });
+        });
+    </script>
+    <br>
+</body>
+
+</html>
