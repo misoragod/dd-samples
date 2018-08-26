@@ -12,9 +12,8 @@
 |Plans/GetCurrentlyJson|現在のプランの詳細をjson形式でダウンロードする。|   
 |Azure/ConnectAzure|DDからAzureのStorage Queueへメセージを送信する。|  
 |Azure/SendMail|DDから取得したユーザーアカウント（email address)を　|　
-|              |Azureへ送信し、そのemail addressへメールを返信する。|　　　　　　　　　　
+|              |Azureへ送信し、Azureからそのemail addressへメールを返信する。|　　　　　　　　　　
    
-**Plan/GetALL, GetCurrentlyView,GetCurrentlyJson**  
-
-  APIの戻り値がnullのケースを考慮し、正常に動作するように修正。
+###Plan/GetALL, GetCurrentlyView,GetCurrentlyJson 　　
+APIの戻り値がnullのケースを考慮し、正常に動作するように修正。
 
