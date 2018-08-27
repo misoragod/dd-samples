@@ -36,43 +36,47 @@
                 return dronedeployApi.Plans.getCurrentlyViewed();
             })
             .then(function(plan) {
-               json = JSON.stringify(plan);
-               plan_id = plan.id;
-               plan_username　= plan.username;
-               console.log(plan_username); 
-            })
-            .then ($(function() {
-                var STORAGE_ACCOUNT = 'ddsample1';
-                var QUEUE_NAME = 'js-queue-items';
-                  var SAS_TOKEN = '?sv=2017-11-09&ss=bfqt&srt=sco&sp=rwdlacup&se=2018-08-26T08:00:32Z&st=2018-08-26T00:00:32Z&sip=219.117.218.13&spr=https,http&sig=J6VD7nUle6FvaaKYaH%2FMxCTn9ZOQV1BYyIU1NGctxtI%3D';
-//                var SAS_TOKEN = '?sv=2017-11-09&ss=bfqt&srt=sco&sp=rwdlacup&se=2018-09-30T07:55:09Z&st=2018-08-25T23:55:09Z&sip=0.0.0.0&spr=https,http&sig=r0k7XTqxO2VVSGZIm7GDpclIRuxuOxN6t%2BauXyw%2BNeI%3D';
-//                var SAS_TOKEN = '?sv=2017-11-09&ss=bfqt&srt=sco&sp=rwdlacup&se=2018-08-24T10:38:05Z&st=2018-08-24T02:38:05Z&sip=219.117.218.13&spr=https,http&sig=woE1fssdJO6Kk2ndK2If%2F2okZD0LgONHIuYc%2BceuTuM%3D';
-                var MESSAGE =   "'" + (plan_username) + "'"; 
-//                var MESSAGE = 'miyamoto@think-next.tech'; 
-                var queueUri = 'https://' + STORAGE_ACCOUNT + '.queue.core.windows.net';
-                var queueService = AzureStorage.Queue.createQueueServiceWithSas(queueUri, SAS_TOKEN);
-                $("#send").click(function(){
-                  queueService.listQueuesSegmented(null, function (error, results) {
-    　　　　　      if (error) {
-        　　　  　// List queue error
-    　　　　　      } else {
-        　　        for (var i = 0, queue; queue = results.entries[i]; i++) {
-                        console.log(queue.name);
-                    }
-            　    }
-                });
-                var encoder = new AzureStorage.Queue.QueueMessageEncoder.TextBase64QueueMessageEncoder();
-                queueService.createMessage(QUEUE_NAME, encoder.encode(MESSAGE), function (error, results, response) {
-                  if (error) {
-                    // Create message error
-                  } else {
-                    // Create message successfully
-                    $("#msg").text("Sent message");
-                    console.log("Sent message")
-                  }
+               $("#send").click(function(){
+                   var STORAGE_ACCOUNT = 'ddsample1';
+                   var QUEUE_NAME = 'js-queue-items';
+                   var SAS_TOKEN = '?sv=2017-11-09&ss=bfqt&srt=sco&sp=rwdlacup&se=2018-08-27T14:06:22Z&st=2018-08-27T06:06:22Z&sip=0.0.0.0-255.255.255.255&spr=https,http&sig=vX8QT55M2YLEpetDKSlwLg1g%2FUf1BR3BWpXHdr01nYQ%3D';
+                   var queueUri = 'https://' + STORAGE_ACCOUNT + '.queue.core.windows.net';
+                   var queueService = AzureStorage.Queue.createQueueServiceWithSas(queueUri, SAS_TOKEN);
+
+
+                   json = JSON.stringify(plan);
+                   plan_id = plan.id;
+                   plan_username　= plan.username;
+                   var MESSAGE =   "'" + (plan_username) + "'"; 
+
+                   console.log(MESSAGE); 
+
+                   queueService.listQueuesSegmented(null, function (error, results) {
+    　　　　　           if (error) {
+        　　　  　       // List queue error
+    　　　　　           } else {
+        　　                for (var i = 0, queue; queue = results.entries[i]; i++) {
+                                console.log(queue.name);
+                            }
+            　         }
+                   });
+                   var encoder = new AzureStorage.Queue.QueueMessageEncoder.TextBase64QueueMessageEncoder();
+                        queueService.createMessage(QUEUE_NAME, encoder.encode(MESSAGE), function (error, results, response) {
+                            if (error) {
+                                // Create message error
+                            } else {
+                            // Create message successfully
+                            $("#msg").text("Sent message");
+                            $("#msg").fadeIn().queue(function() {
+                                setTimeout(function(){$("#msg").dequeue();
+                                }, 3000);
+                            });
+                             $("#msg").fadeOut();
+                            console.log("Sent message")
+                            }
+                        });
                 });
             });
-        }));
     </script>
     <br>
 </body>
