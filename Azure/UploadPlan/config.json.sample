@@ -1,6 +1,8 @@
 {
-   "host": "https://xxxxxxxxxxx.blob.core.windows.net",
-   "SASKey": "your SAS Token",
-   "container": "your container name"
+    "queueUri":  "your queue uri",
+    "queueName": "your queue name",
+    "blobUri": "your blob uri",
+    "SASKey": "SAS Token",
+    "container": "container name"
 }
 
